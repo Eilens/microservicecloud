@@ -1,0 +1,40 @@
+server:
+  port: 8001
+  # 整合mybatis
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: xin.eilen.springcloud.entity
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+
+
+
+spring:  # 整合spring
+  application:
+    name: microservice-dept # 微服务名字
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver  # mysql驱动包
+    url: jdbc:mysql://59.110.225.54:3306/eilen  #数据库名称
+    username: eilen
+    password: 5110
+    dbcp2:
+      min-idle: 5             # 数据库连接池的最小维持连接数
+      initial-size: 5         #初始化连接数
+      max-wait-millis: 200    #超时时间
+      max-total: 5   # 最大连接数
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7003.com:7003/eureka/,http://erueka7002.com/eureka/
+  instance:
+    instance-id: microservicecloud-dept8001
+    prefer-ip-address: true
+
+info:
+  app.name: microservicecloud
+  company.name: www.eilen.xin
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
